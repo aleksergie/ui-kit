@@ -4,3 +4,8 @@
 /.nx/cache
 /.nx/workspace-data
 .angular
+/.angular
+/.nx
+/coverage
+/dist
+node_modules
