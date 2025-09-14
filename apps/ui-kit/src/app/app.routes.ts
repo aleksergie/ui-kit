@@ -1,4 +1,4 @@
 import { Route } from "@angular/router";
-import { NestedCheckboxes } from "libs/ui/src/lib/nested-checkboxes/nested-checkboxes";
+import { NestedCheckboxes } from "@ui-kit/ui";
 
 export const appRoutes: Route[] = [{ path: '**', component: NestedCheckboxes }];
