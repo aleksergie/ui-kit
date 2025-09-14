@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
   selector: 'lib-checkbox',
@@ -7,4 +7,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrl: './checkbox.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class Checkbox {}
+export class Checkbox {
+  @Input() public checkbox: any = {}
+}

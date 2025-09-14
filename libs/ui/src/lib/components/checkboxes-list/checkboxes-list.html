@@ -1,3 +1,16 @@
+<ul>
+    @for (checkbox of checkboxesData; track checkbox.id) {
+    <li>
+        <div>
+            <lib-checkbox [checkbox]="checkbox" />
+        </div>
+
+        @if(checkbox.children && checkbox.children.length > 0) {
+        <lib-checkboxes-list [checkboxesData]="checkbox.children" />
+        }
+    </li>
+    }
+</ul>
 <!-- <ul>
     {items.map((item, index) => (
     <li key={item.id}>

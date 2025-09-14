@@ -11,14 +11,24 @@
     "noImplicitOverride": false,
     "target": "es2015",
     "module": "esnext",
-    "lib": ["es2020", "dom"],
+    "lib": [
+      "es2020",
+      "dom"
+    ],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@ui-kit/ui": ["libs/ui/src/index.ts"],
-      "@y/shared": ["libs/shared/src/index.ts"]
+      "@ui-kit/ui": [
+        "libs/ui/src/index.ts"
+      ],
+      "@ui-kit/shared": [
+        "libs/shared/src/index.ts"
+      ]
     }
   },
-  "exclude": ["node_modules", "tmp"]
+  "exclude": [
+    "node_modules",
+    "tmp"
+  ]
 }
