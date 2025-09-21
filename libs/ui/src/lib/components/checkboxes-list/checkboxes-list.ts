@@ -5,7 +5,7 @@ import { Checkbox, ICheckbox } from "@ui-kit/shared"
 
 @Component({
   selector: 'lib-checkboxes-list',
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, Checkbox],
   templateUrl: './checkboxes-list.html',
   styleUrl: './checkboxes-list.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

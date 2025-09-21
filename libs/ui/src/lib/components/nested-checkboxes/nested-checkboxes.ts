@@ -15,7 +15,7 @@ export class NestedCheckboxes {
     {
       id: 1,
       name: 'Electronics',
-      checked: false,
+      checked: true,
       children: [
         {
           id: 2,
@@ -25,7 +25,7 @@ export class NestedCheckboxes {
             {
               id: 3,
               name: 'iPhone',
-              checked: false,
+              checked: true,
             },
             {
               id: 4,
@@ -37,7 +37,7 @@ export class NestedCheckboxes {
         {
           id: 5,
           name: 'Laptops',
-          checked: false,
+          checked: true,
           children: [
             {
               id: 6,
@@ -66,7 +66,7 @@ export class NestedCheckboxes {
         {
           id: 10,
           name: 'Non-fiction',
-          checked: false,
+          checked: true,
         },
       ],
     },

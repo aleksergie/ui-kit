@@ -1,10 +1,7 @@
 <ul>
     @for (checkbox of checkboxesData; track checkbox.id) {
     <li>
-        <div class="checkbox">
-            <input id="{{checkbox.id}}" type="checkbox" />
-            <label for="{{checkbox.id}}">{{checkbox.name}}</label>
-        </div>
+        <lib-checkbox [checkbox]="checkbox" />
 
         @if(checkbox.children && checkbox.children.length > 0) {
         <lib-checkboxes-list [checkboxesData]="checkbox.children" />
