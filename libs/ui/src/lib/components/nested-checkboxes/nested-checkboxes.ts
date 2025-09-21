@@ -1,14 +1,17 @@
 import { Component } from '@angular/core';
 import { CheckboxesList } from '../checkboxes-list/checkboxes-list';
+import { ICheckbox } from '@ui-kit/shared';
 
 @Component({
   selector: 'lib-nested-checkboxes',
   imports: [CheckboxesList],
   templateUrl: './nested-checkboxes.html',
   styleUrl: './nested-checkboxes.scss',
+  host: { role: 'tree' }
+
 })
 export class NestedCheckboxes {
-  public checkboxesData = [
+  public checkboxesData: ICheckbox[] = [
     {
       id: 1,
       name: 'Electronics',

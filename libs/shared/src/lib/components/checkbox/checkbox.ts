@@ -1,12 +1,12 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, Input } from '@angular/core';
+import { ICheckbox } from '@ui-kit/shared';
 
 @Component({
   selector: 'lib-checkbox',
-  imports: [],
   templateUrl: './checkbox.html',
   styleUrl: './checkbox.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Checkbox {
-  @Input() public checkbox: any = {}
+  checkbox = input.required<ICheckbox>();
 }

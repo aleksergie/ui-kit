@@ -1,15 +1,20 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input, signal } from '@angular/core';
-import { Checkbox } from "@ui-kit/shared"
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { Checkbox, ICheckbox } from "@ui-kit/shared"
 
 @Component({
   selector: 'lib-checkboxes-list',
-  imports: [Checkbox, CommonModule],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './checkboxes-list.html',
   styleUrl: './checkboxes-list.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CheckboxesList {
-  @Input() public checkboxesData: any = [];
-  // @Input() public checkboxesData: any = signal([])
+  @Input() public checkboxesData: ICheckbox[] = [];
+
+  public ngOnChanges() {
+    console.log(this.checkboxesData)
+  }
+
 }
