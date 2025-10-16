@@ -1,6 +1,6 @@
 export interface ICheckbox {
     id: number,
     name: string,
-    checked: boolean,
+    checked: boolean | null,
     children?: ICheckbox[]
 }  

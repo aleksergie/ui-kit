@@ -1,7 +1,11 @@
 <ul>
     @for (checkbox of checkboxesData; track checkbox.id) {
     <li>
-        <lib-checkbox [checkbox]="checkbox" />
+        <!-- <lib-checkbox [checkbox]="checkbox" /> -->
+
+        <input uiCheckbox type="checkbox" id="{{checkbox.id}}" [ngModel]="checkbox | uiMapper: getValue : map"
+            (ngModelChange)="onChecked(checkbox, $event)" />
+        <label for="{{checkbox.id}}">{{checkbox.name}}</label>
 
         @if(checkbox.children && checkbox.children.length > 0) {
         <lib-checkboxes-list [checkboxesData]="checkbox.children" />
