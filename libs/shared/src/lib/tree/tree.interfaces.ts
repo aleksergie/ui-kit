@@ -7,11 +7,6 @@ export interface TreeController<TItem> {
   toggle(item: TItem): void;
 }
 
-export interface TreeAccessor<TItem, TValue> {
-  register(item: TItem, value: TValue): void;
-  unregister(item: TItem): void;
-}
-
 export interface TreeNodeContext<T, TItem> {
   readonly $implicit: T;
   readonly node: T;

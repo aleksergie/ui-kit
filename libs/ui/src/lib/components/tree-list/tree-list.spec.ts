@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TreeControllerDirective } from './tree-controller.directive';
 import { TreeItemControllerDirective } from './tree-item-controller.directive';
 import { TreeList } from './tree-list';
 
@@ -51,58 +50,16 @@ const tree: readonly TestNode[] = [
     </ng-template>
   `,
 })
-class UncontrolledHost {
+class TreeListHost {
   public readonly nodes = tree;
 
   public readonly childrenAccessor = (node: TestNode): readonly TestNode[] =>
     node.children ?? [];
-}
-
-@Component({
-  standalone: true,
-  imports: [TreeControllerDirective, TreeList],
-  template: `
-    <lib-tree-list
-      [libTreeController]="false"
-      [expandedMap]="expandedMap"
-      [nodes]="nodes"
-      [nodeTemplate]="nodeTemplate"
-      [childrenAccessor]="childrenAccessor"
-      (toggled)="onToggled($event)"
-    ></lib-tree-list>
-
-    <ng-template
-      #nodeTemplate
-      let-node
-      let-hasChildren="hasChildren"
-      let-expanded="expanded"
-      let-toggle="toggle"
-    >
-      @if (hasChildren) {
-        <button type="button" class="toggle" (click)="toggle()">
-          {{ expanded ? 'expanded' : 'collapsed' }}
-        </button>
-      }
-      <span class="node">{{ node.name }}</span>
-    </ng-template>
-  `,
-})
-class ControlledHost {
-  public readonly nodes = tree;
-  public readonly expandedMap = new Map<TestNode, boolean>();
-  public readonly toggled: TestNode[] = [];
-
-  public readonly childrenAccessor = (node: TestNode): readonly TestNode[] =>
-    node.children ?? [];
-
-  public onToggled(node: TestNode): void {
-    this.toggled.push(node);
-  }
 }
 
 describe('TreeList', () => {
-  it('collapses descendants with the uncontrolled controller', async () => {
-    const fixture = await createFixture(UncontrolledHost);
+  it('collapses descendants with the tree controller', async () => {
+    const fixture = await createFixture(TreeListHost);
 
     expect(text(fixture)).toContain('Child');
 
@@ -111,19 +68,6 @@ describe('TreeList', () => {
 
     expect(text(fixture)).not.toContain('Child');
     expect(text(fixture)).toContain('collapsed');
-  });
-
-  it('registers node values for controlled expansion', async () => {
-    const fixture = await createFixture(ControlledHost);
-
-    expect(text(fixture)).not.toContain('Child');
-
-    clickToggle(fixture);
-    fixture.detectChanges();
-
-    expect(fixture.componentInstance.toggled).toEqual([tree[0]]);
-    expect(fixture.componentInstance.expandedMap.get(tree[0])).toBe(true);
-    expect(text(fixture)).toContain('Child');
   });
 });
 

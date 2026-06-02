@@ -1,6 +1,6 @@
 import { InjectionToken } from '@angular/core';
 
-import { TreeAccessor, TreeController } from './tree.interfaces';
+import { TreeController } from './tree.interfaces';
 
 export const DEFAULT_TREE_CONTROLLER: TreeController<unknown> = {
   isExpanded: () => true,
@@ -12,8 +12,4 @@ export const TREE_CONTROLLER = new InjectionToken<TreeController<unknown>>(
   {
     factory: () => DEFAULT_TREE_CONTROLLER,
   },
-);
-
-export const TREE_ACCESSOR = new InjectionToken<TreeAccessor<unknown, unknown>>(
-  'TREE_ACCESSOR',
 );

@@ -6,11 +6,10 @@ import {
 } from '@ui-kit/shared';
 
 import { TreeItem } from './tree-item';
-import { TreeNode } from './tree-node.directive';
 
 @Component({
   selector: 'lib-tree-list',
-  imports: [TreeItem, TreeNode, forwardRef(() => TreeList)],
+  imports: [TreeItem, forwardRef(() => TreeList)],
   templateUrl: './tree-list.html',
   styleUrl: './tree-list.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
