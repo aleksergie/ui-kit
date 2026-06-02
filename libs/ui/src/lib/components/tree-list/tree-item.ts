@@ -44,7 +44,6 @@ export class TreeItem<T = unknown> {
   protected get context(): TreeNodeContext<T, TreeItem<T>> {
     return {
       $implicit: this.node(),
-      node: this.node(),
       item: this,
       level: this.level(),
       children: this.children(),

@@ -1,5 +1,3 @@
-import { TemplateRef } from '@angular/core';
-
 export type TreeChildrenAccessor<T> = (node: T) => readonly T[];
 
 export interface TreeController<TItem> {
@@ -9,19 +7,12 @@ export interface TreeController<TItem> {
 
 export interface TreeNodeContext<T, TItem> {
   readonly $implicit: T;
-  readonly node: T;
   readonly item: TItem;
   readonly level: number;
   readonly children: readonly T[];
   readonly hasChildren: boolean;
   readonly expanded: boolean;
   readonly toggle: () => void;
-}
-
-export interface TreeItemTemplateContext<T, TItem> {
-  readonly $implicit: TItem;
-  readonly node: T;
-  readonly template: TemplateRef<TreeNodeContext<T, TItem>>;
 }
 
 export function defaultTreeChildrenAccessor<T>(node: T): readonly T[] {
