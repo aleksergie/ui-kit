@@ -30,8 +30,4 @@ export class TreeList<T = unknown> {
   protected childrenOf(node: T): readonly T[] {
     return this.childrenAccessor()(node);
   }
-
-  protected hasChildren(node: T): boolean {
-    return this.childrenOf(node).length > 0;
-  }
 }

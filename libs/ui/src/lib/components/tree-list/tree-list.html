@@ -9,7 +9,7 @@
         [children]="childrenOf(node)"
       ></lib-tree-item>
 
-      @if (hasChildren(node) && item.isExpanded) {
+      @if (item.hasChildren && item.isExpanded) {
         <lib-tree-list
           [nodes]="childrenOf(node)"
           [nodeTemplate]="nodeTemplate()"
