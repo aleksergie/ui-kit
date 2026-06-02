@@ -1,3 +1,26 @@
 :host {
     display: block;
 }
+
+.tree-node {
+    align-items: center;
+    display: flex;
+    gap: 4px;
+    min-height: 24px;
+}
+
+.tree-node__toggle {
+    align-items: center;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    display: inline-flex;
+    height: 20px;
+    justify-content: center;
+    padding: 0;
+    width: 20px;
+}
+
+.tree-node__toggle--placeholder {
+    cursor: default;
+}

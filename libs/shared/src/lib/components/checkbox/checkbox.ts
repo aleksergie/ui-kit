@@ -1,54 +1,34 @@
-import { ChangeDetectionStrategy, Component, DestroyRef, ElementRef, inject } from '@angular/core';
+import {
+  Directive,
+  DestroyRef,
+  ElementRef,
+  OnInit,
+  inject,
+} from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { FormsModule, NgControl } from '@angular/forms';
+import { NgControl } from '@angular/forms';
+import { startWith } from 'rxjs';
 
-@Component({
+// Keep the established uiCheckbox selector for existing consumers.
+@Directive({
+  // eslint-disable-next-line @angular-eslint/directive-selector
   selector: 'input[uiCheckbox][type="checkbox"]',
-  template: '',
-  styles: [
-    `
-      // :host {
-      //   display: inline-flex;
-      //   line-height: 1.5;
-      //   gap: 1px;
-      //   font-size: 18px;
-      // }
-    `
-  ],
-  imports: [FormsModule],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class Checkbox {
-  // checkbox = input.required<ICheckbox>();
-  // isChecked = computed(() => (this.checkbox().checked))
-  control = inject(NgControl, { self: true, optional: true });
-  el = inject(ElementRef).nativeElement;
-
-  constructor() {
-    console.log('Checkbox component')
-  }
-
-  // control = viewChild.required(NgControl);
-
+export class Checkbox implements OnInit {
+  private readonly control = inject(NgControl, { self: true, optional: true });
+  private readonly el =
+    inject<ElementRef<HTMLInputElement>>(ElementRef).nativeElement;
   private readonly destroyRef = inject(DestroyRef);
 
-  public ngOnInit() {
-    this.control?.valueChanges?.pipe(takeUntilDestroyed(this.destroyRef)).subscribe((value) => {
-      if (value === null) {
-        this.el.indeterminate = true;
-      }
-    })
+  public ngOnInit(): void {
+    this.control?.valueChanges
+      ?.pipe(startWith(this.control?.value), takeUntilDestroyed(this.destroyRef))
+      .subscribe((value) => {
+        this.syncIndeterminate(value);
+      });
   }
 
-  // public ngAfterViewInit(): void {
-  //   this.control?.valueChanges?.pipe(takeUntilDestroyed(this.destroyRef)).subscribe((value) => {
-  //     console.log(value)
-
-  //     if (value === null) {
-  //       this.el.querySelector('input').indeterminate = true;
-  //     }
-  //   })
-  // };
-
-
+  private syncIndeterminate(value: unknown): void {
+    this.el.indeterminate = value === null;
+  }
 }

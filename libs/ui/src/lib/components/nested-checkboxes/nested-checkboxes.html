@@ -1,1 +1,20 @@
-<lib-checkboxes-list [checkboxesData]="checkboxesData"></lib-checkboxes-list>
+<lib-tree-list [libTreeController]="true" [nodes]="checkboxesData()" [nodeTemplate]="checkboxTemplate"
+  [childrenAccessor]="childrenAccessor"></lib-tree-list>
+
+<ng-template #checkboxTemplate let-node let-level="level" let-hasChildren="hasChildren" let-expanded="expanded"
+  let-toggle="toggle">
+  <div class="tree-node" [style.padding-left.px]="level * 20">
+    @if (hasChildren) {
+    <button class="tree-node__toggle" type="button" [attr.aria-label]="expanded ? 'Collapse' : 'Expand'"
+      (click)="toggle()">
+      {{ expanded ? '▼' : '▶' }}
+    </button>
+    } @else {
+    <span class="tree-node__toggle tree-node__toggle--placeholder" aria-hidden="true"></span>
+    }
+
+    <input uiCheckbox type="checkbox" [id]="'checkbox-' + node.id" [ngModel]="checkboxState.getState(node)"
+      (ngModelChange)="checkboxState.toggle(node, $event)" />
+    <label [for]="'checkbox-' + node.id">{{ node.name }}</label>
+  </div>
+</ng-template>
