@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Checkbox, ICheckbox, TreeChildrenAccessor } from '@ui-kit/shared';
+import { Checkbox, ICheckbox } from '@ui-kit/shared';
 
 import { TreeItemControllerDirective } from '../tree-list/tree-item-controller.directive';
 import { TreeList } from '../tree-list/tree-list';
@@ -81,7 +81,4 @@ export class NestedCheckboxes {
   ]);
 
   protected readonly checkboxState = new CheckboxTreeState(this.checkboxesData());
-
-  protected readonly childrenAccessor: TreeChildrenAccessor<ICheckbox> = (node) =>
-    node.children ?? [];
 }
