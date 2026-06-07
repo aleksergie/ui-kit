@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, TemplateRef, TrackByFunction, forwardRef, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, TemplateRef, TrackByFunction, input } from '@angular/core';
 import {
   TreeChildrenAccessor,
   TreeNodeContext,
@@ -9,7 +9,7 @@ import { TreeItem } from './tree-item';
 
 @Component({
   selector: 'lib-tree-list',
-  imports: [TreeItem, forwardRef(() => TreeList)],
+  imports: [TreeItem],
   templateUrl: './tree-list.html',
   styleUrl: './tree-list.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
