@@ -1,9 +1,11 @@
-import { InjectionToken } from '@angular/core';
+import { InjectionToken, signal, WritableSignal } from '@angular/core';
 
 import { TreeController } from './tree.interfaces';
 
+const isExpanded: WritableSignal<boolean> = signal(true);
+
 export const DEFAULT_TREE_CONTROLLER: TreeController<unknown> = {
-  isExpanded: () => true,
+  expanded: () => isExpanded,
   toggle: () => undefined,
 };
 

@@ -1,7 +1,9 @@
+import { Signal } from '@angular/core';
+
 export type TreeChildrenAccessor<T> = (node: T) => readonly T[];
 
 export interface TreeController<TItem> {
-  isExpanded(item: TItem): boolean;
+  expanded(item: TItem): Signal<boolean>;
   toggle(item: TItem): void;
 }
 

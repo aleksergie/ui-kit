@@ -40,7 +40,7 @@ Introduce a generic tree renderer with a pluggable controller layer:
 - `TreeList<T>` renders recursive data and delegates node appearance to a consumer `TemplateRef`.
 - Consumers provide `childrenAccessor` so the renderer is not tied to a `children` property.
 - `TreeItem` represents each rendered row and asks the active controller whether it is expanded.
-- `TreeItemControllerDirective` stores expansion in a `WeakMap<TreeItem, boolean>` (uncontrolled mode).
+- `TreeItemControllerDirective` stores expansion in a `WeakMap<TreeItem, WritableSignal<boolean>>` (uncontrolled mode).
 - Checkbox tri-state and cascade behavior remain separate in `CheckboxTreeState`.
 
 Controlled expansion (parent-owned `Map<T, boolean>`) was prototyped but removed as unused. See [Future: controlled expansion](#future-controlled-expansion-not-implemented) for the approach if we need it later.
@@ -98,7 +98,7 @@ Expansion behavior is pluggable through Angular's injector hierarchy. `TreeItem`
 
 | Token | Purpose | Default |
 | --- | --- | --- |
-| `TREE_CONTROLLER` | `isExpanded(item)` and `toggle(item)` | Always expanded; toggle is a no-op |
+| `TREE_CONTROLLER` | `expanded(item): Signal<boolean>` and `toggle(item)` | Always expanded; toggle is a no-op |
 
 Defined in `libs/shared/src/lib/tree/tree.tokens.ts`.
 
@@ -111,9 +111,11 @@ Defined in `libs/shared/src/lib/tree/tree.tokens.ts`.
 
 1. The consumer template calls `toggle()` from the node context.
 2. `TreeItem.toggle()` calls `controller.toggle(this)`.
-3. The controller updates its internal `WeakMap<TreeItem, boolean>`.
-4. `TreeItem.isExpanded` re-evaluates.
-5. `TreeList` renders or removes the nested child list based on `item.isExpanded` (children are removed from the DOM when collapsed, not just hidden).
+3. The controller flips the per-item `WritableSignal<boolean>` held in its internal `WeakMap<TreeItem, WritableSignal<boolean>>`.
+4. `TreeItem.expanded` (a `Signal<boolean>` from the controller) notifies dependents — including the `context` computed and host `aria-expanded`.
+5. `TreeList` renders or removes the nested child list based on `item.expanded()` (children are removed from the DOM when collapsed, not just hidden).
+
+Expansion is signal-based end-to-end so `TreeItem`'s `computed` context stays in sync without manual invalidation or change-detection workarounds.
 
 ### Uncontrolled expansion (current)
 
@@ -151,7 +153,7 @@ This is the same idea as a controlled form input: the parent holds the value; th
 
 1. **Parent-owned state:** `expandedMap: Map<T, boolean>` keyed by data object reference (same instances as `[nodes]`).
 2. **Registration bridge:** `TreeItem` calls `controller.toggle(this)` using component instances, but controlled state is keyed by `T`. A `TreeNode` directive (or similar) registers `(TreeItem → T)` on create/destroy via a `TREE_ACCESSOR` token.
-3. **Controller directive:** Implements both `TreeController` (read/write `expandedMap`) and `TreeAccessor` (maintains `Map<TreeItem, T>`).
+3. **Controller directive:** Implements both `TreeController` (read/write `expandedMap`, exposing `expanded(node): Signal<boolean>`) and `TreeAccessor` (maintains `Map<TreeItem, T>`).
 4. **Toggle:** Resolve `TreeItem` → `T`, flip `expandedMap.get(T)`, emit `(toggled)` with `T`.
 5. **Default when missing:** `[libTreeController]="false"` as fallback when a node has no map entry (start collapsed).
 

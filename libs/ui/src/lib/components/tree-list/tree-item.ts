@@ -3,6 +3,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   TemplateRef,
+  computed,
   inject,
   input,
 } from '@angular/core';
@@ -17,7 +18,7 @@ import { TREE_CONTROLLER, TreeController, TreeNodeContext } from '@ui-kit/shared
   host: {
     role: 'treeitem',
     '[class._expandable]': 'hasChildren',
-    '[attr.aria-expanded]': 'hasChildren ? isExpanded : null',
+    '[attr.aria-expanded]': 'hasChildren ? isExpanded() : null',
   },
 })
 export class TreeItem<T = unknown> {
@@ -29,6 +30,8 @@ export class TreeItem<T = unknown> {
   public readonly level = input(0);
   public readonly children = input<readonly T[]>([]);
 
+  public readonly isExpanded = this.controller.expanded(this);
+
   public readonly toggle = (): void => {
     this.controller.toggle(this);
   };
@@ -37,19 +40,13 @@ export class TreeItem<T = unknown> {
     return this.children().length > 0;
   }
 
-  public get isExpanded(): boolean {
-    return this.controller.isExpanded(this);
-  }
-
-  protected get context(): TreeNodeContext<T, TreeItem<T>> {
-    return {
-      $implicit: this.node(),
-      item: this,
-      level: this.level(),
-      children: this.children(),
-      hasChildren: this.hasChildren,
-      expanded: this.isExpanded,
-      toggle: this.toggle,
-    };
-  }
+  protected readonly context = computed<TreeNodeContext<T, TreeItem<T>>>(() => ({
+    $implicit: this.node(),
+    item: this,
+    level: this.level(),
+    children: this.children(),
+    hasChildren: this.children().length > 0,
+    expanded: this.isExpanded(),
+    toggle: this.toggle,
+  }));
 }

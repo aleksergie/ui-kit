@@ -1,4 +1,4 @@
-import { Directive, forwardRef, input } from '@angular/core';
+import { Directive, Signal, WritableSignal, forwardRef, input, signal } from '@angular/core';
 import { TREE_CONTROLLER, TreeController } from '@ui-kit/shared';
 
 import { TreeItem } from './tree-item';
@@ -15,17 +15,26 @@ import { TreeItem } from './tree-item';
 })
 export class TreeItemControllerDirective<T = unknown>
   implements TreeController<TreeItem<T>> {
-  private readonly expanded = new WeakMap<TreeItem<T>, boolean>();
+  private readonly states = new WeakMap<TreeItem<T>, WritableSignal<boolean>>();
 
   public readonly fallback = input(true, { alias: 'libTreeController' });
 
-  public isExpanded(item: TreeItem<T>): boolean {
-    console.log('isExpanded', this.expanded)
-    return this.expanded.get(item) ?? this.fallback();
+  public expanded(item: TreeItem<T>): Signal<boolean> {
+    return this.getStateForItem(item);
   }
 
   public toggle(item: TreeItem<T>): void {
-    console.log('toggle', this.expanded)
-    this.expanded.set(item, !this.isExpanded(item));
+    this.getStateForItem(item).update((expanded) => !expanded);
+  }
+
+  private getStateForItem(item: TreeItem<T>): WritableSignal<boolean> {
+    let state = this.states.get(item);
+
+    if (!state) {
+      state = signal(this.fallback());
+      this.states.set(item, state);
+    }
+
+    return state;
   }
 }
