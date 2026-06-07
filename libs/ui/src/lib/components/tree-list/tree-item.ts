@@ -17,8 +17,8 @@ import { TREE_CONTROLLER, TreeController, TreeNodeContext } from '@ui-kit/shared
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     role: 'treeitem',
-    '[class._expandable]': 'hasChildren',
-    '[attr.aria-expanded]': 'hasChildren ? isExpanded() : null',
+    '[class._expandable]': 'hasChildren()',
+    '[attr.aria-expanded]': 'hasChildren() ? isExpanded() : null',
   },
 })
 export class TreeItem<T = unknown> {
@@ -36,9 +36,7 @@ export class TreeItem<T = unknown> {
     this.controller.toggle(this);
   };
 
-  public get hasChildren(): boolean {
-    return this.children().length > 0;
-  }
+  public readonly hasChildren = computed(() => this.children().length > 0);
 
   protected readonly context = computed<TreeNodeContext<T, TreeItem<T>>>(() => ({
     $implicit: this.node(),

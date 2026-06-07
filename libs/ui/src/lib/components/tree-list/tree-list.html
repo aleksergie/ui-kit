@@ -5,7 +5,7 @@
     <lib-tree-item #item [node]="node" [nodeTemplate]="nodeTemplate()" [level]="level()"
       [children]="children"></lib-tree-item>
 
-    @if (item.hasChildren && item.isExpanded()) {
+    @if (item.hasChildren() && item.isExpanded()) {
     <lib-tree-list [nodes]="children" [nodeTemplate]="nodeTemplate()" [childrenAccessor]="childrenAccessor()"
       [level]="level() + 1" [trackBy]="trackBy()"></lib-tree-list>
     }
