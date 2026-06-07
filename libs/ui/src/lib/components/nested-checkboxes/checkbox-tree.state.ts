@@ -11,12 +11,15 @@ export interface CheckboxTreeNode {
 
 export class CheckboxTreeState<T extends CheckboxTreeNode = ICheckbox> {
   private readonly selection = signal(new Map<number, boolean>());
+  private leafCache = new WeakMap<CheckboxTreeNode, readonly T[]>();
 
   public constructor(nodes: readonly T[]) {
     this.reset(nodes);
   }
 
   public reset(nodes: readonly T[]): void {
+    this.leafCache = new WeakMap();
+
     const next = new Map<number, boolean>();
 
     for (const node of nodes) {
@@ -55,10 +58,14 @@ export class CheckboxTreeState<T extends CheckboxTreeNode = ICheckbox> {
   }
 
   private leavesOf(node: T): readonly T[] {
-    if (!node.children?.length) {
-      return [node];
-    }
+    const cached = this.leafCache.get(node);
+    if (cached) return cached;
 
-    return node.children.flatMap((child) => this.leavesOf(child as T));
+    const result = node.children?.length
+      ? node.children.flatMap((child) => this.leavesOf(child as T))
+      : [node];
+
+    this.leafCache.set(node, result);
+    return result;
   }
 }
