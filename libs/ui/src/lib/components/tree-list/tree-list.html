@@ -1,11 +1,12 @@
 <ul>
   @for (node of nodes(); track trackBy()($index, node)) {
+  @let children = childrenOf(node);
   <li>
     <lib-tree-item #item [node]="node" [nodeTemplate]="nodeTemplate()" [level]="level()"
-      [children]="childrenOf(node)"></lib-tree-item>
+      [children]="children"></lib-tree-item>
 
     @if (item.hasChildren && item.isExpanded()) {
-    <lib-tree-list [nodes]="childrenOf(node)" [nodeTemplate]="nodeTemplate()" [childrenAccessor]="childrenAccessor()"
+    <lib-tree-list [nodes]="children" [nodeTemplate]="nodeTemplate()" [childrenAccessor]="childrenAccessor()"
       [level]="level() + 1" [trackBy]="trackBy()"></lib-tree-list>
     }
   </li>
