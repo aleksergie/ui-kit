@@ -43,7 +43,7 @@ export class TreeItem<T = unknown> {
     item: this,
     level: this.level(),
     children: this.children(),
-    hasChildren: this.children().length > 0,
+    hasChildren: this.hasChildren(),
     expanded: this.isExpanded(),
     toggle: this.toggle,
   }));
