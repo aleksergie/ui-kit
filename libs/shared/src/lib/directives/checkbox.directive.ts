@@ -9,7 +9,6 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { NgControl } from '@angular/forms';
 import { startWith } from 'rxjs';
 
-// Keep the established uiCheckbox selector for existing consumers.
 @Directive({
   // eslint-disable-next-line @angular-eslint/directive-selector
   selector: 'input[uiCheckbox][type="checkbox"]',

@@ -1,6 +1,6 @@
 import { InjectionToken, signal, WritableSignal } from '@angular/core';
 
-import { TreeController } from './tree.interfaces';
+import { TreeController } from '../models/tree.model';
 
 const isExpanded: WritableSignal<boolean> = signal(true);
 
