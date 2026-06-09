@@ -8,7 +8,7 @@ import {
 import { TreeItem } from './tree-item';
 
 @Component({
-  selector: 'lib-tree-list',
+  selector: 'uik-tree-list',
   imports: [TreeItem],
   templateUrl: './tree-list.html',
   styleUrl: './tree-list.scss',

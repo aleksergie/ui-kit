@@ -1,4 +1,4 @@
-<lib-tree-list [libTreeController]="true" [nodes]="checkboxesData()" [nodeTemplate]="checkboxTemplate"></lib-tree-list>
+<uik-tree-list [uikTreeController]="true" [nodes]="checkboxesData()" [nodeTemplate]="checkboxTemplate"></uik-tree-list>
 
 <ng-template #checkboxTemplate let-node let-level="level" let-hasChildren="hasChildren" let-expanded="expanded"
   let-toggle="toggle">
@@ -12,7 +12,7 @@
     <span class="tree-node__toggle tree-node__toggle--placeholder" aria-hidden="true"></span>
     }
 
-    <input uiCheckbox type="checkbox" [id]="'checkbox-' + node.id" [ngModel]="checkboxState.getState(node)"
+    <input uikCheckbox type="checkbox" [id]="'checkbox-' + node.id" [ngModel]="checkboxState.getState(node)"
       (ngModelChange)="checkboxState.toggle(node, $event)" />
     <label [for]="'checkbox-' + node.id">{{ node.name }}</label>
   </div>

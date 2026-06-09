@@ -105,7 +105,7 @@ Defined in `libs/shared/src/lib/tree/tree.tokens.ts`.
 ### Who injects what
 
 - **`TreeItem`** injects `TREE_CONTROLLER`. It always passes **`this`** (the component instance) to the controller — never the raw data node.
-- **`TreeItemControllerDirective`** is placed on the root `lib-tree-list`. Nested `lib-tree-list` instances inherit the same provider, so deep rows use the same controller.
+- **`TreeItemControllerDirective`** is placed on the root `uik-tree-list`. Nested `uik-tree-list` instances inherit the same provider, so deep rows use the same controller.
 
 ### Toggle flow
 
@@ -120,8 +120,8 @@ Expansion is signal-based end-to-end so `TreeItem`'s `computed` context stays in
 ### Uncontrolled expansion (current)
 
 ```html
-<lib-tree-list
-  [libTreeController]="true"
+<uik-tree-list
+  [uikTreeController]="true"
   [nodes]="nodes"
   [nodeTemplate]="nodeTemplate"
   [childrenAccessor]="childrenAccessor"
@@ -155,13 +155,13 @@ This is the same idea as a controlled form input: the parent holds the value; th
 2. **Registration bridge:** `TreeItem` calls `controller.toggle(this)` using component instances, but controlled state is keyed by `T`. A `TreeNode` directive (or similar) registers `(TreeItem → T)` on create/destroy via a `TREE_ACCESSOR` token.
 3. **Controller directive:** Implements both `TreeController` (read/write `expandedMap`, exposing `expanded(node): Signal<boolean>`) and `TreeAccessor` (maintains `Map<TreeItem, T>`).
 4. **Toggle:** Resolve `TreeItem` → `T`, flip `expandedMap.get(T)`, emit `(toggled)` with `T`.
-5. **Default when missing:** `[libTreeController]="false"` as fallback when a node has no map entry (start collapsed).
+5. **Default when missing:** `[uikTreeController]="false"` as fallback when a node has no map entry (start collapsed).
 
 Example wiring if re-added:
 
 ```html
-<lib-tree-list
-  [libTreeController]="false"
+<uik-tree-list
+  [uikTreeController]="false"
   [expandedMap]="expandedMap"
   [nodes]="nodes"
   [nodeTemplate]="nodeTemplate"

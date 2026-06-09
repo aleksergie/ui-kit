@@ -2,12 +2,12 @@
   @for (node of nodes(); track trackBy()($index, node)) {
   @let children = childrenOf(node);
   <li>
-    <lib-tree-item #item [node]="node" [nodeTemplate]="nodeTemplate()" [level]="level()"
-      [children]="children"></lib-tree-item>
+    <uik-tree-item #item [node]="node" [nodeTemplate]="nodeTemplate()" [level]="level()"
+      [children]="children"></uik-tree-item>
 
     @if (item.hasChildren() && item.isExpanded()) {
-    <lib-tree-list [nodes]="children" [nodeTemplate]="nodeTemplate()" [childrenAccessor]="childrenAccessor()"
-      [level]="level() + 1" [trackBy]="trackBy()"></lib-tree-list>
+    <uik-tree-list [nodes]="children" [nodeTemplate]="nodeTemplate()" [childrenAccessor]="childrenAccessor()"
+      [level]="level() + 1" [trackBy]="trackBy()"></uik-tree-list>
     }
   </li>
   }

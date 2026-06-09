@@ -10,8 +10,7 @@ import { NgControl } from '@angular/forms';
 import { startWith } from 'rxjs';
 
 @Directive({
-  // eslint-disable-next-line @angular-eslint/directive-selector
-  selector: 'input[uiCheckbox][type="checkbox"]',
+  selector: 'input[uikCheckbox][type="checkbox"]',
 })
 export class Checkbox implements OnInit {
   private readonly control = inject(NgControl, { self: true, optional: true });

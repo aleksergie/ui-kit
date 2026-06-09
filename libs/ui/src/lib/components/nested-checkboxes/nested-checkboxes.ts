@@ -8,7 +8,7 @@ import { TreeList } from '../tree-list/tree-list';
 import { CheckboxTreeState } from './checkbox-tree.state';
 
 @Component({
-  selector: 'lib-nested-checkboxes',
+  selector: 'uik-nested-checkboxes',
   imports: [FormsModule, Checkbox, TreeItemControllerDirective, TreeList],
   templateUrl: './nested-checkboxes.html',
   styleUrl: './nested-checkboxes.scss',

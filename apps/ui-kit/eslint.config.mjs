@@ -1,4 +1,5 @@
 import nx from '@nx/eslint-plugin';
+import angular from 'angular-eslint';
 import baseConfig from '../../eslint.config.mjs';
 
 export default [
@@ -96,9 +97,11 @@ export default [
       'no-implied-eval': 'error',
     },
   },
+  ...[...angular.configs.templateRecommended, ...angular.configs.templateAccessibility].map(
+    (config) => ({ ...config, files: ['**/*.html'] }),
+  ),
   {
     files: ['**/*.html'],
-    extends: [...angular.configs.templateRecommended, ...angular.configs.templateAccessibility],
     rules: {
       // Angular template best practices
       '@angular-eslint/template/attributes-order': [

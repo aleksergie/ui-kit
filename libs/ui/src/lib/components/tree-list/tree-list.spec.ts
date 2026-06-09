@@ -27,12 +27,12 @@ const tree: readonly TestNode[] = [
   standalone: true,
   imports: [TreeItemControllerDirective, TreeList],
   template: `
-    <lib-tree-list
-      [libTreeController]="true"
+    <uik-tree-list
+      [uikTreeController]="true"
       [nodes]="nodes"
       [nodeTemplate]="nodeTemplate"
       [childrenAccessor]="childrenAccessor"
-    ></lib-tree-list>
+    ></uik-tree-list>
 
     <ng-template
       #nodeTemplate

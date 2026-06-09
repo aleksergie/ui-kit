@@ -10,7 +10,7 @@ import {
 import { TREE_CONTROLLER, TreeController, TreeNodeContext } from '@ui-kit/shared';
 
 @Component({
-  selector: 'lib-tree-item',
+  selector: 'uik-tree-item',
   imports: [NgTemplateOutlet],
   templateUrl: './tree-item.html',
   styleUrl: './tree-item.scss',
