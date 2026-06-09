@@ -1,7 +1,8 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Checkbox, ICheckbox } from '@ui-kit/shared';
+import { ICheckbox } from '@ui-kit/shared';
 
+import { Checkbox } from '../../directives/checkbox.directive';
 import { TreeItemControllerDirective } from '../tree-list/tree-item-controller.directive';
 import { TreeList } from '../tree-list/tree-list';
 import { CheckboxTreeState } from './checkbox-tree.state';
