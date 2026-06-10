@@ -3,6 +3,12 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
+    "start": "nx serve ui-kit",
+    "build": "nx run-many -t build",
+    "test": "nx run-many -t test",
+    "lint": "nx run-many -t lint",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "bench": "vitest bench --run"
   },
   "private": true,
