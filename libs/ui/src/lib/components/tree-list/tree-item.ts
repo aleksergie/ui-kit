@@ -17,7 +17,6 @@ import { TREE_CONTROLLER, TreeController, TreeNodeContext } from '@ui-kit/shared
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     role: 'treeitem',
-    '[class._expandable]': 'hasChildren()',
     '[attr.aria-expanded]': 'hasChildren() ? isExpanded() : null',
   },
 })
