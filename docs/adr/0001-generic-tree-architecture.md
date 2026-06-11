@@ -186,7 +186,7 @@ onNodeToggled(node: MyNode): void {
 
 Checkbox logic is fully separate from tree expansion. `CheckboxTreeState` owns checked / unchecked / indeterminate behavior.
 
-Location: `libs/ui/src/lib/components/nested-checkboxes/checkbox-tree.state.ts`.
+Location: `libs/ui/src/lib/state/checkbox-tree.state.ts`.
 
 ### Leaf-only storage
 

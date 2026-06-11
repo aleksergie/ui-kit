@@ -1,14 +1,15 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CheckboxNode } from '@ui-kit/shared';
-
-import { Checkbox } from '../../directives/checkbox.directive';
-import { TreeItemControllerDirective } from '../tree-list/tree-item-controller.directive';
-import { TreeList } from '../tree-list/tree-list';
-import { CheckboxTreeState } from './checkbox-tree.state';
+import {
+  Checkbox,
+  CheckboxTreeState,
+  TreeItemControllerDirective,
+  TreeList,
+} from '@ui-kit/ui';
 
 @Component({
-  selector: 'uik-nested-checkboxes',
+  selector: 'app-nested-checkboxes',
   imports: [FormsModule, Checkbox, TreeItemControllerDirective, TreeList],
   templateUrl: './nested-checkboxes.html',
   styleUrl: './nested-checkboxes.scss',
@@ -26,16 +27,8 @@ export class NestedCheckboxes {
           name: 'Mobile phones',
           checked: null,
           children: [
-            {
-              id: 3,
-              name: 'iPhone',
-              checked: true,
-            },
-            {
-              id: 4,
-              name: 'Android',
-              checked: false,
-            },
+            { id: 3, name: 'iPhone', checked: true },
+            { id: 4, name: 'Android', checked: false },
           ],
         },
         {
@@ -43,16 +36,8 @@ export class NestedCheckboxes {
           name: 'Laptops',
           checked: false,
           children: [
-            {
-              id: 6,
-              name: 'MacBook',
-              checked: true,
-            },
-            {
-              id: 7,
-              name: 'Surface Pro',
-              checked: false,
-            },
+            { id: 6, name: 'MacBook', checked: true },
+            { id: 7, name: 'Surface Pro', checked: false },
           ],
         },
       ],
@@ -62,23 +47,11 @@ export class NestedCheckboxes {
       name: 'Books',
       checked: false,
       children: [
-        {
-          id: 9,
-          name: 'Fiction',
-          checked: false,
-        },
-        {
-          id: 10,
-          name: 'Non-fiction',
-          checked: true,
-        },
+        { id: 9, name: 'Fiction', checked: false },
+        { id: 10, name: 'Non-fiction', checked: true },
       ],
     },
-    {
-      id: 11,
-      name: 'Toys',
-      checked: false,
-    },
+    { id: 11, name: 'Toys', checked: false },
   ]);
 
   protected readonly checkboxState = new CheckboxTreeState(this.checkboxesData());

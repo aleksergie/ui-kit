@@ -1,6 +1,6 @@
-<uik-tree-list [uikTreeController]="true" [nodes]="checkboxesData()" [nodeTemplate]="checkboxTemplate"></uik-tree-list>
+<uik-tree-list [nodeTemplate]="checkboxTemplate" [nodes]="checkboxesData()" [uikTreeController]="true" />
 
-<ng-template #checkboxTemplate let-node let-level="level" let-hasChildren="hasChildren" let-expanded="expanded"
+<ng-template #checkboxTemplate let-expanded="expanded" let-hasChildren="hasChildren" let-level="level" let-node
   let-toggle="toggle">
   <div class="tree-node" [style.padding-left.px]="level * 20">
     @if (hasChildren) {
@@ -9,10 +9,10 @@
       {{ expanded ? '▼' : '▶' }}
     </button>
     } @else {
-    <span class="tree-node__toggle tree-node__toggle--placeholder" aria-hidden="true"></span>
+    <span aria-hidden="true" class="tree-node__toggle tree-node__toggle--placeholder"></span>
     }
 
-    <input uikCheckbox type="checkbox" [id]="'checkbox-' + node.id" [ngModel]="checkboxState.getState(node)"
+    <input type="checkbox" uikCheckbox [id]="'checkbox-' + node.id" [ngModel]="checkboxState.getState(node)"
       (ngModelChange)="checkboxState.toggle(node, $event)" />
     <label [for]="'checkbox-' + node.id">{{ node.name }}</label>
   </div>

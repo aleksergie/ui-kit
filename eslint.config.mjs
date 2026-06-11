@@ -30,6 +30,10 @@ export default [
             },
             {
               sourceTag: 'type:app',
+              onlyDependOnLibsWithTags: ['type:feature', 'type:ui', 'type:util'],
+            },
+            {
+              sourceTag: 'type:feature',
               onlyDependOnLibsWithTags: ['type:ui', 'type:util'],
             },
             {
