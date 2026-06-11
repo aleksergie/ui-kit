@@ -11,7 +11,6 @@ import { TreeItem } from '../components/tree-list/tree-item';
       useExisting: forwardRef(() => TreeItemControllerDirective),
     },
   ],
-  exportAs: 'uikTreeController',
 })
 export class TreeItemControllerDirective<T = unknown>
   implements TreeController<TreeItem<T>> {
