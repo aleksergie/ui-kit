@@ -1,5 +1,5 @@
 import { signal } from '@angular/core';
-import { ICheckbox } from '@ui-kit/shared';
+import { CheckboxNode } from '@ui-kit/shared';
 
 type CheckboxValue = boolean | null;
 
@@ -9,7 +9,7 @@ export interface CheckboxTreeNode {
   readonly children?: readonly CheckboxTreeNode[];
 }
 
-export class CheckboxTreeState<T extends CheckboxTreeNode = ICheckbox> {
+export class CheckboxTreeState<T extends CheckboxTreeNode = CheckboxNode> {
   private readonly selection = signal(new Map<number, boolean>());
   private leafCache = new WeakMap<CheckboxTreeNode, readonly T[]>();
 

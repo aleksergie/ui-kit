@@ -28,7 +28,7 @@ We need a tree foundation that separates rendering, expansion, and (where applic
 | Tree structure | Checkbox-specific recursive component | Generic `TreeList` + consumer template |
 | Expansion | Always visible | Supported via `TreeItemControllerDirective` |
 | Selection state | Inline in component + pipe | `CheckboxTreeState` class |
-| State storage | `Map<ICheckbox, boolean>` keyed by object refs | `Map<number, boolean>` keyed by leaf `id` |
+| State storage | `Map<CheckboxNode, boolean>` keyed by object refs | `Map<number, boolean>` keyed by leaf `id` |
 | Reusability | Checkbox-only | Tree usable for any hierarchical UI |
 | Testability | Logic tied to templates | State and tree behavior unit-tested |
 

@@ -1,9 +1,9 @@
-import { ICheckbox } from '@ui-kit/shared';
+import { CheckboxNode } from '@ui-kit/shared';
 
 import { CheckboxTreeState } from './checkbox-tree.state';
 
 describe('CheckboxTreeState', () => {
-  const createTree = (): ICheckbox[] => [
+  const createTree = (): CheckboxNode[] => [
     {
       id: 1,
       name: 'Parent',

@@ -1,6 +1,6 @@
-export interface ICheckbox {
-    id: number,
-    name: string,
-    checked: boolean | null,
-    children?: ICheckbox[]
-}  
+export interface CheckboxNode {
+  readonly id: number;
+  readonly name: string;
+  readonly checked: boolean | null;
+  readonly children?: readonly CheckboxNode[];
+}

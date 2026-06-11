@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ICheckbox } from '@ui-kit/shared';
+import { CheckboxNode } from '@ui-kit/shared';
 
 import { Checkbox } from '../../directives/checkbox.directive';
 import { TreeItemControllerDirective } from '../tree-list/tree-item-controller.directive';
@@ -15,7 +15,7 @@ import { CheckboxTreeState } from './checkbox-tree.state';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NestedCheckboxes {
-  protected readonly checkboxesData = signal<ICheckbox[]>([
+  protected readonly checkboxesData = signal<CheckboxNode[]>([
     {
       id: 1,
       name: 'Electronics',
