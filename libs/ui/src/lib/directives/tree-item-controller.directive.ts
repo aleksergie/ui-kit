@@ -1,7 +1,7 @@
 import { Directive, Signal, WritableSignal, forwardRef, input, signal } from '@angular/core';
 import { TREE_CONTROLLER, TreeController } from '@ui-kit/shared';
 
-import { TreeItem } from './tree-item';
+import { TreeItem } from '../components/tree-list/tree-item';
 
 @Directive({
   selector: '[uikTreeController]',

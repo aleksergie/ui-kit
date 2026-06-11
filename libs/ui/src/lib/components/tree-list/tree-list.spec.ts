@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TreeItemControllerDirective } from './tree-item-controller.directive';
+import { TreeItemControllerDirective } from '../../directives/tree-item-controller.directive';
 import { TreeList } from './tree-list';
 
 interface TestNode {
